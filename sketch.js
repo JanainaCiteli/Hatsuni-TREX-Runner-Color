@@ -51,7 +51,7 @@ function setup() {
   trex.addAnimation("running", trex_running);
   trex.addAnimation("collided", trex_collided);
   trex.setCollider('circle',0,0,30)
-  trex.scale = 1.5
+  trex.scale = 1.7
   // trex.debug=true
   
    
@@ -97,9 +97,9 @@ function draw() {
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
     
-    if((touches.length > 0 || keyDown("SPACE")) && trex.y  >= height-120) {
+    if((touches.length > 0 || keyDown("SPACE")) && trex.y  >= height-50) {
       jumpSound.play( )
-      trex.velocityY = -10;
+      trex.velocityY = -13;
        touches = [];
     }
     
@@ -155,7 +155,7 @@ function spawnClouds() {
     cloud.velocityX = -3;
     
      //assign lifetime to the variable
-    cloud.lifetime = 600;
+    cloud.lifetime = 1000;
     
     //adjust the depth
     cloud.depth = trex.depth;
@@ -186,8 +186,8 @@ function spawnObstacles() {
     }
     
     //assign scale and lifetime to the obstacle           
-    obstacle.scale = 0.3;
-    obstacle.lifetime = 300;
+    obstacle.scale = 0.8;
+    obstacle.lifetime = 1000;
     obstacle.depth = trex.depth;
     trex.depth +=1;
     //add each obstacle to the group
