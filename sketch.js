@@ -21,9 +21,10 @@ function preload(){
   backgroundImg = loadImage("assets/backgroundImg.png")
   sunAnimation = loadImage("assets/sun.png");
   
-  trex_running = loadAnimation("assets/trex_2.png","assets/trex_1.png","assets/trex_3.png");
-  trex_collided = loadAnimation("assets/trex_collided.png");
+  trex_running = loadAnimation("hatsuni/1.png","hatsuni/2.png","hatsuni/3.png","hatsuni/4.png","hatsuni/5.png","hatsuni/6.png","hatsuni/7.png","hatsuni/8.png","hatsuni/9.png","hatsuni/10.png","hatsuni/11.png");
+  trex_collided = loadAnimation("hatsuni/1.png");
   
+    
   groundImage = loadImage("assets/ground.png");
   
   cloudImage = loadImage("assets/cloud.png");
@@ -49,10 +50,11 @@ function setup() {
   
   trex.addAnimation("running", trex_running);
   trex.addAnimation("collided", trex_collided);
-  trex.setCollider('circle',0,0,350)
-  trex.scale = 0.08
+  trex.setCollider('circle',0,0,30)
+  trex.scale = 1.5
   // trex.debug=true
   
+   
   invisibleGround = createSprite(width/2,height-10,width,125);  
   invisibleGround.shapeColor = "#f4cbaa";
   
@@ -82,6 +84,7 @@ function setup() {
   score = 0;
 }
 
+
 function draw() {
   //trex.debug = true;
   background(backgroundImg);
@@ -94,8 +97,8 @@ function draw() {
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
     
-    if(touches.length > 0 && trex.y  >= height-120) {
-      jumpSound.play()
+    if((touches.length > 0 || keyDown("SPACE")) && trex.y  >= height-120) {
+      jumpSound.play( )
       trex.velocityY = -10;
        touches = [];
     }
@@ -132,7 +135,7 @@ function draw() {
     obstaclesGroup.setLifetimeEach(-1);
     cloudsGroup.setLifetimeEach(-1);
     
-    if(touches.length>0) {      
+    if(touches.length>0 || keyDown("SPACE")) {      
       reset();
       touches = []
     }
@@ -152,7 +155,7 @@ function spawnClouds() {
     cloud.velocityX = -3;
     
      //assign lifetime to the variable
-    cloud.lifetime = 300;
+    cloud.lifetime = 600;
     
     //adjust the depth
     cloud.depth = trex.depth;
@@ -166,7 +169,7 @@ function spawnClouds() {
 
 function spawnObstacles() {
   if(frameCount % 60 === 0) {
-    var obstacle = createSprite(600,height-95,20,30);
+    var obstacle = createSprite(width+20,height-95,20,30);
     obstacle.setCollider('circle',0,0,45)
     // obstacle.debug = true
   
