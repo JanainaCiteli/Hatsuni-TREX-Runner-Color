@@ -21,8 +21,8 @@ function preload(){
   backgroundImg = loadImage("assets/backgroundImg.png")
   sunAnimation = loadImage("assets/sun.png");
   
-  trex_running = loadAnimation("hatsuni/1.png","hatsuni/2.png","hatsuni/3.png","hatsuni/4.png","hatsuni/5.png","hatsuni/6.png","hatsuni/7.png","hatsuni/8.png","hatsuni/9.png","hatsuni/10.png","hatsuni/11.png");
-  trex_collided = loadAnimation("hatsuni/1.png");
+  trex_running = loadAnimation("1.png","2.png","3.png","4.png","5.png","6.png","7.png","8.png","9.png","10.png","11.png");
+  trex_collided = loadAnimation("1.png");
   
     
   groundImage = loadImage("assets/ground.png");
@@ -96,10 +96,10 @@ function draw() {
   if (gameState===PLAY){
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
-     
+    
     if((touches.length > 0 || keyDown("SPACE")) && trex.y  >= height-120) {
       jumpSound.play( )
-      trex.velocityY = -13;
+      trex.velocityY = -10;
        touches = [];
     }
     
